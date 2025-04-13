@@ -1,99 +1,102 @@
 "use client";
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import Map, { Source, Layer, Popup, Marker } from "react-map-gl/mapbox";
-import type { CircleLayer } from "react-map-gl/mapbox";
-import type { FeatureCollection } from "geojson";
+import { useState, useCallback } from "react";
+import Map, { Source, Layer, Popup } from "react-map-gl/mapbox";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+// Interface pour les propriétés des points de données
+interface PointData {
+  longitude: number;
+  latitude: number;
+  title: string;
+  description?: string;
+  imageUrl?: string;
+  url?: string;
+}
+
 export default function Home() {
-  // State to track the selected point for popup display
-  const [selectedPoint, setSelectedPoint] = useState<{
-    longitude: number;
-    latitude: number;
-    title: string;
-  } | null>(null);
+  // State pour suivre le point sélectionné pour l'affichage du popup
+  const [selectedPoint, setSelectedPoint] = useState<PointData | null>(null);
   const [cursor, setCursor] = useState("auto");
 
-  const geojson: FeatureCollection = {
-    type: "FeatureCollection",
-    features: [
-      {
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [-122.4, 37.8],
-        },
-        properties: { title: "915 Front Street, San Francisco, California" },
-      },
-      {
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [-74.006, 40.7128],
-        },
-        properties: { title: "New York City, NY" },
-      },
-      {
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [-87.6298, 41.8781],
-        },
-        properties: { title: "Chicago, IL" },
-      },
-    ],
-  };
-
-  const layerStyle: CircleLayer = {
-    id: "point",
-    type: "circle",
+  // Définition de la couche de points
+  const pointLayerStyle = {
+    id: 'points',
+    type: 'circle' as const,
+    source: 'points-source',
     paint: {
-      "circle-radius": 15,
-      "circle-color": "#007cbf",
-    },
-    // This enables interactivity with the layer
-    interactive: true,
-  };
-
-  // Handle clicks on map features
-  const onClick = (event) => {
-    // Get clicked features
-    const features = event.features;
-    if (features && features.length > 0) {
-      const clickedFeature = features[0];
-      setSelectedPoint({
-        longitude: clickedFeature.geometry.coordinates[0],
-        latitude: clickedFeature.geometry.coordinates[1],
-        title: clickedFeature.properties.title,
-      });
-    } else {
-      // Close popup when clicking elsewhere
-      setSelectedPoint(null);
+      'circle-radius': 5,
+      'circle-color': '#f2cb07',
+      'circle-stroke-width': 1,
+      'circle-stroke-color': '#111111'
     }
   };
+  
+  // Fonction pour gérer le clic sur la carte
+  const onClick = useCallback((event: any) => {
+    // S'assurer que nous avons des features cliquées
+    if (!event.features || event.features.length === 0) {
+      setSelectedPoint(null);
+      return;
+    }
+    
+    console.log("Features au clic:", event.features);
+    
+    // Récupérer les données du point cliqué
+    const feature = event.features[0];
+    if (feature.layer.id === 'points') {
+      console.dir(feature)
+      const [longitude, latitude] = feature.geometry.coordinates;
+      
+      // Récupérer les propriétés du point
+      // Ajustez les noms des propriétés selon votre structure de données
+      const title = feature.properties.Title || feature.properties.Name || 'Point d\'intérêt';
+      const description = feature.properties.Description || '';
+      const imageUrl = feature.properties.imageUrl || feature.properties.image || '';
+      const url = feature.properties.URL
+      
+      setSelectedPoint({
+        longitude,
+        latitude,
+        title,
+        description,
+        imageUrl,
+        url
+      });
+    }
+  }, []);
 
   return (
     <Map
-      mapboxAccessToken="pk.eyJ1IjoiaGVucmlsYW5nb2lzc2U3NSIsImEiOiJjbTd5cjQycTAwYThrMmlxc28xMXprMmFxIn0.TcsJitAK8l1P8Oh2UhmySA"
-      initialViewState={{
+    mapboxAccessToken="pk.eyJ1IjoiaGVucmlsYW5nb2lzc2U3NSIsImEiOiJjbTd5cjQycTAwYThrMmlxc28xMXprMmFxIn0.TcsJitAK8l1P8Oh2UhmySA"
+    initialViewState={{
         longitude: -100,
         latitude: 40,
         zoom: 2,
       }}
       style={{ width: "100vw", height: "100vh", margin: "auto" }}
-      mapStyle="mapbox://styles/mapbox/dark-v11"
-      interactiveLayerIds={["point"]} // Specify which layers receive click events
+      mapStyle="mapbox://styles/henrilangoisse75/cm7yrjpgi00tn01scf1d40e4n"
+      // mapStyle="mapbox://styles/henrilangoisse75/cm9fpdomf00k401sbfk20h05k"
+      // mapStyle="mapbox://styles/mapbox/dark-v11"
+      interactiveLayerIds={["points"]} // ID de notre couche personnalisée
       onClick={onClick}
-      onMouseLeave={() => setCursor("auto")}
       onMouseEnter={() => setCursor("pointer")}
+      onMouseLeave={() => setCursor("auto")}
       cursor={cursor}
     >
-      <Source id="my-data" type="geojson" data={geojson}>
-        <Layer {...layerStyle} />
+      {/* Source de données utilisant votre tileset Mapbox */}
+      <Source
+        id="points-source"
+        type="vector"
+        url="mapbox://henrilangoisse75.8u43i1qi" // Remplacez par l'URL de votre tileset
+      >
+        {/* Couche de points utilisant la source ci-dessus */}
+        <Layer
+          {...pointLayerStyle}
+          source-layer="GENERALfileWWFilmarchives-5acqbg" // Remplacez par le nom de la couche dans votre tileset
+        />
       </Source>
-
-      {/* Display popup when a point is selected */}
+      
+      {/* Popup pour afficher les informations du point */}
       {selectedPoint && (
         <Popup
           longitude={selectedPoint.longitude}
@@ -101,10 +104,40 @@ export default function Home() {
           anchor="bottom"
           onClose={() => setSelectedPoint(null)}
           closeButton={true}
-          className=""
+          closeOnClick={false}
+          className="map-popup"
         >
-          <div className="p-2 text-gray-700">
-            <h3 className="font-bold">{selectedPoint.title}</h3>
+          <div className="popup-content" style={{color: 'black'}}>
+            <h3 style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
+              {selectedPoint.title}
+            </h3>
+            
+            {selectedPoint.description && (
+              <p style={{ fontSize: '14px', marginBottom: '10px', lineHeight: '1.4' }}>
+                {selectedPoint.description}
+              </p>
+            )}   
+            
+            {selectedPoint.url && (
+              <a href={ selectedPoint.url } style={{ fontSize: '14px', marginBottom: '10px', lineHeight: '1.4' }}  style={{color: 'blue'}}>
+                {selectedPoint.url}
+              </a>
+            )}
+            
+            {selectedPoint.imageUrl && (
+              <div style={{ marginTop: '10px', borderRadius: '4px', overflow: 'hidden' }}>
+                <img
+                  src={selectedPoint.imageUrl}
+                  alt={selectedPoint.title}
+                  style={{ 
+                    width: "100%", 
+                    maxHeight: "150px", 
+                    objectFit: "cover",
+                    display: "block"
+                  }}
+                />
+              </div>
+            )}
           </div>
         </Popup>
       )}
