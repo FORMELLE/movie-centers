@@ -5,8 +5,9 @@ import styles from './Sidebar.module.css';
 import BlogExcerpt from './BlogExcerpt';
 import Collapse from './Collapse';
 import Link from 'next/link';
+import { Post } from '@/lib/posts';
 
-const Sidebar = ({ post }) => {
+const Sidebar = ({ post }: { post: null|Post }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleSidebar = () => {

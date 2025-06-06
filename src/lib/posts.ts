@@ -11,7 +11,7 @@ const postsDirectory = path.join(process.cwd(), 'posts');
 export function getSortedPostsData() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
+  const allPostsData = fileNames.map((fileName): { slug: string, date: string, title?: string } => {
     const slug = fileName.replace(/\.md$/, '');
 
     // Read markdown file as string
@@ -24,7 +24,7 @@ export function getSortedPostsData() {
     // Combine the data with the slug
     return {
       slug,
-      ...data,
+      ...data as { date: string, title?: string },
     };
   });
 
@@ -52,7 +52,7 @@ export function getAllPostIds() {
 
 export interface Post {
   contentHtml: string;
-  frontMatter: Record<string, unknown>;
+  frontMatter: Record<string, string>;
   slug: string
 }
 

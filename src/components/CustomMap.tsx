@@ -41,19 +41,17 @@ export default function CustomMap() {
     }
     
     console.log("Features au clic:", event.features);
-    
     // Récupérer les données du point cliqué
     const feature = event.features[0];
     if (feature.layer?.id === 'points') {
-      console.dir(feature)
-      const [longitude, latitude] = feature.geometry.coordinates;
+      const [longitude, latitude] = (feature.geometry as unknown as { coordinates: number[]}).coordinates;
       
       // Récupérer les propriétés du point
       // Ajustez les noms des propriétés selon votre structure de données
-      const title = feature.properties.Title || feature.properties.Name || 'Point d\'intérêt';
-      const description = feature.properties.Description || '';
-      const imageUrl = feature.properties.imageUrl || feature.properties.image || '';
-      const url = feature.properties.URL
+      const title = feature.properties?.Title || feature.properties?.Name || 'Point d\'intérêt';
+      const description = feature.properties?.Description || '';
+      const imageUrl = feature.properties?.imageUrl || feature.properties?.image || '';
+      const url = feature.properties?.URL
       
       setSelectedPoint({
         longitude,
@@ -68,7 +66,7 @@ export default function CustomMap() {
 
   return (
     <Map
-      mapboxAccessToken="pk.eyJ1IjoiaGVucmlsYW5nb2lzc2U3NSIsImEiOiJjbTd5cjQycTAwYThrMmlxc28xMXprMmFxIn0.TcsJitAK8l1P8Oh2UhmySA"
+      mapboxAccessToken="pk.eyJ1IjoiaGVucmlsYW5nb2lzc2U3NSIsImEiOiJjbWJra2J3ZmcwdHRrMmxxd3F4bWNtcmV0In0.TqRpYLdRVIdThFbCP4eWHA"
       initialViewState={{
         longitude: -100,
         latitude: 40,

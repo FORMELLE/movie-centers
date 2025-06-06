@@ -2,10 +2,13 @@ import { notFound } from 'next/navigation';
 import { getAllPostSlugs, getPostBySlug } from '../../../lib/posts';
 import Link from 'next/link';
 
-interface BlogPageProps {
-  params: { slug: string };
-}
+type Params = {
+  slug: string;
+};
 
+type BlogPageProps = {
+  params: Promise<Params>;
+};
 
 export async function generateStaticParams() {
   // Replace this with your actual data fetching logic
@@ -13,7 +16,9 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug: slug.params.slug }));
 }
 
-export default async function BlogPage({ params }: BlogPageProps) {
+// eslint-disable-next-line
+export default async function BlogPage(props: BlogPageProps) {
+  const { params } = props
   const { slug } = await params
   const post = await getPostBySlug(slug);
 

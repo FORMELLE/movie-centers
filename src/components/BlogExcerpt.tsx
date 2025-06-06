@@ -2,7 +2,8 @@
 import { Post } from '@/lib/posts';
 import Link from 'next/link';
 
-const BlogExcerpt = ({ post }: { post: Post }) => {
+const BlogExcerpt = ({ post }: { post: null|Post }) => {
+  if (!post) { return }
   const { frontMatter, contentHtml, slug } = post
   const { date, title } = frontMatter
 
