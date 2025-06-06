@@ -67,7 +67,7 @@ export default function Home() {
 
   return (
     <Map
-    mapboxAccessToken="pk.eyJ1IjoiaGVucmlsYW5nb2lzc2U3NSIsImEiOiJjbTd5cjQycTAwYThrMmlxc28xMXprMmFxIn0.TcsJitAK8l1P8Oh2UhmySA"
+    mapboxAccessToken="pk.eyJ1IjoiaGVucmlsYW5nb2lzc2U3NSIsImEiOiJjbWJra2J3ZmcwdHRrMmxxd3F4bWNtcmV0In0.TqRpYLdRVIdThFbCP4eWHA"
     initialViewState={{
         longitude: -100,
         latitude: 40,
