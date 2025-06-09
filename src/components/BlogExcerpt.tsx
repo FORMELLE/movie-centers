@@ -20,11 +20,11 @@ const BlogExcerpt = ({ post }: { post: null|Post }) => {
   };
 
   return (
-    <article className='bg-white rounded p-4'>
+    <article className='rounded p-4'>
       <Link href={`/blog/${slug}`} className="block hover:opacity-80 transition-opacity">
         <h3 className='mb-2 text-lg font-semibold'>{title}</h3>
-        <div className='text-sm text-gray-600 mb-3'>{date}</div>
-        <div className="text-gray-800 line-clamp-3">
+        <div className='text-sm text-yellow-800 mb-3'>{date}</div>
+        <div className="line-clamp-3">
           {createExcerpt(contentHtml)}
         </div>
       </Link>
