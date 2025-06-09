@@ -26,14 +26,11 @@ const Sidebar = ({ post }: { post: null|Post }) => {
           </div>
           <Collapse>
             <p>
-              Welcome to the World Film Archive, a digital gateway to the world&apos;s 
-              most treasured film collections.
-              This interactive website showcases a dynamic map highlighting film archive
-              institutes across the globe.
-              Discover where iconic reels are preserved, view detailed profiles of each institute,
-              explore digitized collections, and learn about their history and cultural impact.
-              Whether you&apos;re a researcher, filmmaker, or cinephile, this platform connects you
-              to the institutions safeguarding the legacy of cinema.
+            "Dans toute vie nous trouverions des continents, des îles, des déserts, des marais, des territoires surpeuplés et des *terrae incognitae*. 
+            De cette mémoire nous pourrions dessiner la carte, extraire des images avec plus de facilité (et de vérité) que des contes et légendes. 
+            Que le sujet de cette mémoire se trouve être un photographe et un cinéaste ne veut pas dire que sa mémoire est en soi plus intéressante 
+            que celle du monsieur qui passe (et encore moins de la dame), mais simplement qu'il a laissé, lui, des traces sur lesquelles on peut travailler,
+            et des contours pour dresser ses cartes." — Chris Marker, Immemory
             </p>
           </Collapse>
           <div className={styles.sidebarFeatured}>
