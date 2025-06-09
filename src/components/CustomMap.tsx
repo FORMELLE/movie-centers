@@ -22,12 +22,12 @@ export default function CustomMap() {
     id: 'points',
     type: 'circle' as const,
     source: 'points-source',
-    'source-layer': 'generalfilewwfilmarchives-5acqbg',
+    'source-layer': 'GENERALfileWWFilmarchives-5acqbg',
     paint: {
-      'circle-radius': 5,
-      'circle-color': '#ffffff',
+      'circle-radius': 6,
+      'circle-color': '#008000',
       'circle-stroke-width': 1,
-      'circle-stroke-color': '#000000'
+      'circle-stroke-color': '#008000'
     }
   };
 
