@@ -22,7 +22,7 @@ export default function CustomMap() {
     id: 'points',
     type: 'circle' as const,
     source: 'points-source',
-    'source-layer': 'GENERALfileWWFilmarchives-5acqbg',
+    'source-layer': 'generalfilewwfilmarchives-5acqbg',
     paint: {
       'circle-radius': 5,
       'circle-color': '#ffffff',
@@ -69,13 +69,13 @@ export default function CustomMap() {
   interactiveLayerIds={mapLoaded ? ["points"] : []}
   onClick={mapLoaded ? onClick : undefined}
 >
-      <Source
-        id="points-source"
-        type="vector"
-        url="mapbox://styles/henrilangoisse75/cm7yrjpgi00tn01scf1d40e4n"
-      >
-        <Layer {...pointLayerStyle} />
-      </Source>
+<Source
+  id="points-source"
+  type="vector"
+  url="mapbox://henrilangoisse75.8u43i1qi"
+>
+  <Layer {...pointLayerStyle} />
+</Source>
 
       {selectedPoint && (
         <Popup
