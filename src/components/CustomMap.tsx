@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useCallback } from "react";
@@ -19,11 +20,12 @@ export default function CustomMap() {
   const [selectedPoint, setSelectedPoint] = useState<PointData | null>(null);
   const [cursor, setCursor] = useState("auto");
 
-  // Définition de la couche de points
+  // Définition de la couche de points - CORRIGÉE
   const pointLayerStyle = {
     id: 'points',
     type: 'circle' as const,
     source: 'points-source',
+    'source-layer': 'GENERALfileWWFilmarchives-5acqbg', // ✅ Propriété entre guillemets
     paint: {
       'circle-radius': 5,
       'circle-color': '#f2cb07',
@@ -88,11 +90,8 @@ export default function CustomMap() {
         type="vector"
         url="mapbox://henrilangoisse75.8u43i1qi" // Remplacez par l'URL de votre tileset
       >
-        {/* Couche de points utilisant la source ci-dessus */}
-        <Layer
-          {...pointLayerStyle}
-          source-layer="GENERALfileWWFilmarchives-5acqbg" // Remplacez par le nom de la couche dans votre tileset
-        />
+        {/* Couche de points utilisant la source ci-dessus - CORRIGÉE */}
+        <Layer {...pointLayerStyle} />
       </Source>
       
       {/* Popup pour afficher les informations du point */}
