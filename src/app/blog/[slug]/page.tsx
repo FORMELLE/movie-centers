@@ -16,7 +16,6 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug: slug.params.slug }));
 }
 
-// eslint-disable-next-line
 export default async function BlogPage(props: BlogPageProps) {
   const { params } = props
   const { slug } = await params

@@ -1,12 +1,13 @@
 /* components/Sidebar.module.css */
 .sidebar {
   width: 300px;
+  overflow-y: scroll;
   background-color: #f0f0f0;
   height: 100vh;
   left: 0;
   top: 0;
   transition: all 0.3s ease;
-  color: #123123
+  color: #123123;
 }
 
 .sidebarHeader {
