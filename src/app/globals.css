@@ -46,3 +46,7 @@ body {
 .mapboxgl-ctrl-logo {
   display: none !important;
 }
+
+.map-popup .mapboxgl-popup-content {
+  background: var(--background)
+}
