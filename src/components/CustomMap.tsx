@@ -51,26 +51,28 @@ export default function CustomMap() {
   }, []);
 
   return (
-    <Map
-      mapboxAccessToken="pk.eyJ1IjoiaGVucmlsYW5nb2lzc2U3NSIsImEiOiJjbWJra2J3ZmcwdHRrMmxxd3F4bWNtcmV0In0.TqRpYLdRVIdThFbCP4eWHA"
-      initialViewState={{
-        longitude: -100,
-        latitude: 40,
-        zoom: 2,
-      }}
-      style={{ width: "100vw", height: "100vh", margin: "auto" }}
-      mapStyle="mapbox://styles/henrilangoisse75/cm7yrjpgi00tn01scf1d40e4n"
-      onLoad={() => setMapLoaded(true)} // ✅ Wait for style to load
-      onMouseEnter={() => setCursor("pointer")}
-      onMouseLeave={() => setCursor("auto")}
-      cursor={cursor}
-      interactiveLayerIds={mapLoaded ? ["points"] : []} // ✅ Only after load
-      onClick={mapLoaded ? onClick : undefined} // ✅ Only after load
-    >
+   <Map
+  mapboxAccessToken="…"
+  initialViewState={{ longitude: -100, latitude: 40, zoom: 2 }}
+  style={{ width: "100vw", height: "100vh", margin: "auto" }}
+  mapStyle="mapbox://styles/henrilangoisse75/cm7yrjpgi00tn01scf1d40e4n"
+  onLoad={() => {
+    setMapLoaded(true);
+    console.log("Map style fully loaded");
+  }}
+  onError={(e) => {
+    console.error("Map error:", e);
+  }}
+  onMouseEnter={() => setCursor("pointer")}
+  onMouseLeave={() => setCursor("auto")}
+  cursor={cursor}
+  interactiveLayerIds={mapLoaded ? ["points"] : []}
+  onClick={mapLoaded ? onClick : undefined}
+>
       <Source
         id="points-source"
         type="vector"
-        url="mapbox://henrilangoisse75.8u43i1qi"
+        url="mapbox://styles/henrilangoisse75/cm7yrjpgi00tn01scf1d40e4n"
       >
         <Layer {...pointLayerStyle} />
       </Source>
