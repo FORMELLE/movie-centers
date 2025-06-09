@@ -46,7 +46,7 @@ const Sidebar = ({ post }: { post: null|Post }) => {
         </div>
         <div className={styles.sidebarLegend}>
           <h2 style={{ fontWeight: 'bold', marginBottom: '.75em' }}>Legend</h2>
-          <div><div className={styles.legendColor} style={{backgroundColor: 'green'}}></div> Content accessible ✅</div>
+          <div><div className={styles.legendColor} style={{backgroundColor: 'green'}}></div> Content accessible</div>
           <div><div className={styles.legendColor} style={{backgroundColor: 'orange'}}></div> Institutional only</div>
         </div>
       </div>
