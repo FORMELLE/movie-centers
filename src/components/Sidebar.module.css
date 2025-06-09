@@ -7,9 +7,9 @@
   left: 0;
   top: 0;
   transition: all 0.3s ease;
-  color: #ffffff; /* Texte blanc */
-  border-right: 2px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 5px 0 20px rgba(255, 255, 255, 0.1);
+  color: #f2cb07;
+  border-right: 2px solid rgba(242, 203, 7, 0.2);
+  box-shadow: 5px 0 20px rgba(242, 203, 7, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -18,24 +18,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  color: #ffffff;
+  border-bottom: 2px solid rgba(242, 203, 7, 0.2);
+  background: rgba(242, 203, 7, 0.05);
+  backdrop-filter: blur(8px);
+  color: #f2cb07;
 }
 
 .sidebarHeader h1 {
-  color: #ffffff;
+  color: #f2cb07;
   font-size: 1.3rem;
   letter-spacing: 1.2px;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 0 5px rgba(242, 203, 7, 0.4);
   margin: 0;
 }
 
 .sidebarClose {
   cursor: pointer;
   display: none;
-  color: #ffffff;
+  color: #f2cb07;
   font-size: 1.6rem;
   transition: all 0.3s ease;
   padding: 5px;
@@ -43,18 +43,18 @@
 }
 
 .sidebarClose:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(242, 203, 7, 0.1);
   transform: scale(1.1);
 }
 
 .sidebarFeatured {
   padding: 1.5em;
-  background: #000000; /* Fond noir plein */
-  color: #ffffff;
+  background: #000000;
+  color: #f2cb07;
 }
 
 .sidebarFeatured h2 {
-  color: #ffffff;
+  color: #f2cb07;
   font-size: 1.2rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
@@ -62,33 +62,33 @@
 }
 
 .sidebarFeatured a {
-  color: #ffffff;
+  color: #f2cb07;
   text-decoration: none;
   transition: all 0.3s ease;
   display: inline-block;
   padding: 8px 15px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(242, 203, 7, 0.4);
   border-radius: 25px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(242, 203, 7, 0.05);
 }
 
 .sidebarFeatured a:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: #ffffff;
+  background: rgba(242, 203, 7, 0.2);
+  border-color: #f2cb07;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px rgba(242, 203, 7, 0.3);
 }
 
 .sidebarLegend {
   padding: 1.5em;
-  border-top: 2px solid rgba(255, 255, 255, 0.15);
-  background: linear-gradient(135deg, #0f0f0f 0%, #1f1f1f 100%);
+  border-top: 2px solid rgba(242, 203, 7, 0.2);
+  background: linear-gradient(135deg, #0a0a0a 0%, #1f1f1f 100%);
   margin-top: auto;
-  color: #ffffff;
+  color: #f2cb07;
 }
 
 .sidebarLegend h2 {
-  color: #ffffff;
+  color: #f2cb07;
   font-size: 1.2rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
@@ -100,7 +100,7 @@
   gap: 1em;
   align-items: center;
   margin-bottom: 0.75em;
-  color: #ddd;
+  color: #d6b807;
   font-size: 0.9rem;
   padding: 5px;
   border-radius: 8px;
@@ -109,7 +109,7 @@
 }
 
 .sidebarLegend > div:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(242, 203, 7, 0.1);
   transform: translateX(5px);
 }
 
@@ -117,8 +117,8 @@
   height: 1.2em;
   width: 1.2em;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(242, 203, 7, 0.3);
+  box-shadow: 0 0 10px rgba(242, 203, 7, 0.3);
 }
 
 /* Scrollbar personnalisé */
@@ -131,12 +131,12 @@
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #555555 0%, #222222 100%);
+  background: linear-gradient(180deg, #f2cb07 0%, #bfa305 100%);
   border-radius: 10px;
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #777777 0%, #444444 100%);
+  background: linear-gradient(180deg, #fff04d 0%, #f2cb07 100%);
 }
 
 @media (max-width: 768px) {
@@ -152,7 +152,7 @@
     left: 0;
     transform: translateY(calc(100% - 65px));
     border-right: none;
-    border-top: 2px solid #ffffff;
+    border-top: 2px solid #f2cb07;
   }
 
   .sidebar.expanded {
