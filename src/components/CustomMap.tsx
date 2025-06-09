@@ -52,7 +52,7 @@ export default function CustomMap() {
 
   return (
    <Map
-  mapboxAccessToken="…"
+  mapboxAccessToken="pk.eyJ1IjoiaGVucmlsYW5nb2lzc2U3NSIsImEiOiJjbWJwZWtpdHYwM21mMmxxeDM3NW1ua250In0.qRt_5M_JBYslwyRZ9xhw5w"
   initialViewState={{ longitude: -100, latitude: 40, zoom: 2 }}
   style={{ width: "100vw", height: "100vh", margin: "auto" }}
   mapStyle="mapbox://styles/henrilangoisse75/cm7yrjpgi00tn01scf1d40e4n"
