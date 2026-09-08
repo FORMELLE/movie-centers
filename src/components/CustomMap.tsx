@@ -26,9 +26,9 @@ export default function CustomMap() {
     'source-layer': 'GENERALfileWWFilmarchives-5acqbg',
     paint: {
       'circle-radius': 6,
-      'circle-color': '#008000',
+      'circle-color': '#000000',
       'circle-stroke-width': 1,
-      'circle-stroke-color': '#008000'
+      'circle-stroke-color': '#000000'
     }
   };
 
