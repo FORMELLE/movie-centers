@@ -7,7 +7,7 @@ export default async function Blog() {
 
   return (
     <div className="container mx-auto p-5">
-      <h1 className="font-bold">Blog World Film Archive</h1>
+      <h1 className="font-bold">ArcAtlas Blog</h1>
       <p>A selection of highlights. Updated sometimes.</p>
 
       <Link href="/" style={{ color: 'aqua', textDecoration: 'underline'}}>

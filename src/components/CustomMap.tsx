@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useCallback } from "react";
-import Map, { Source, Layer, Popup, MapMouseEvent } from "react-map-gl/mapbox";
+import { useState, useCallback, useRef } from "react";
+import Map, { Source, Layer, Popup, MapMouseEvent, MapRef } from "react-map-gl/mapbox";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 interface PointData {
@@ -14,6 +14,7 @@ interface PointData {
 }
 
 export default function CustomMap() {
+  const mapRef = useRef<MapRef>(null);
   const [selectedPoint, setSelectedPoint] = useState<PointData | null>(null);
   const [cursor, setCursor] = useState("auto");
   const [mapLoaded, setMapLoaded] = useState(false); // 👈 track load state
@@ -52,13 +53,19 @@ export default function CustomMap() {
 
   return (
    <Map
+  ref={mapRef}
   mapboxAccessToken="pk.eyJ1IjoiaGVucmlsYW5nb2lzc2U3NSIsImEiOiJjbWJwZWtpdHYwM21mMmxxeDM3NW1ua250In0.qRt_5M_JBYslwyRZ9xhw5w"
   initialViewState={{ longitude: -100, latitude: 40, zoom: 2 }}
   style={{ width: "100vw", height: "100vh", margin: "auto" }}
   mapStyle="mapbox://styles/henrilangoisse75/cm7yrjpgi00tn01scf1d40e4n"
   onLoad={() => {
-    setMapLoaded(true);
-    console.log("Map style fully loaded");
+    // The Standard style loads its imported fragments asynchronously after
+    // "load" fires, so we wait for "idle" before adding our own source/layer
+    // to avoid mapbox-gl's "Style is not done loading" crash.
+    mapRef.current?.getMap().once("idle", () => {
+      setMapLoaded(true);
+      console.log("Map style fully loaded");
+    });
   }}
   onError={(e) => {
     console.error("Map error:", e);
@@ -69,6 +76,7 @@ export default function CustomMap() {
   interactiveLayerIds={mapLoaded ? ["points"] : []}
   onClick={mapLoaded ? onClick : undefined}
 >
+{mapLoaded && (
 <Source
   id="points-source"
   type="vector"
@@ -76,6 +84,7 @@ export default function CustomMap() {
 >
   <Layer {...pointLayerStyle} />
 </Source>
+)}
 
       {selectedPoint && (
         <Popup

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "World Film Archive",
-  description: `Welcome to the World Film Archive, a digital gateway to the world's 
+  title: "ArcAtlas",
+  description: `Welcome to ArcAtlas, a digital gateway to the world's
               most treasured film collections.
               This interactive website showcases a dynamic map highlighting film archive
               institutes across the globe.
